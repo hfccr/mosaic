@@ -16,16 +16,12 @@ import { Connect } from "@/components/Connect";
 
 const pages = [
   {
-    title: "Network",
-    href: "/dapp/network",
+    title: "Profile",
+    href: "/dapp/profile",
   },
   {
-    title: "Add To Network",
-    href: "/dapp/add",
-  },
-  {
-    title: "Confirm ",
-    href: "/dapp/confirm",
+    title: "Manager",
+    href: "/dapp/manager",
   },
 ];
 
