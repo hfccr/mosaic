@@ -12,7 +12,7 @@ import { run } from "@/circuit/run";
 import { computeMerkleRoot } from "@/util/merkleTree";
 import { fromHex, keccak256, toHex } from "viem";
 
-export default function Profile() {
+export default function AnotherDapp() {
     const account = useAccount();
     const { data: hash, error, isPending, writeContract } = useWriteContract();
     const publicClient = usePublicClient();
