@@ -6,6 +6,7 @@ import { config } from "@/util/wagmiConfig";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import Header from "@/components/Header";
+import { Container } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({ children }) {
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider>
               <Header />
-              {children}
+              <Container sx={{ marginTop: 20 }}>{children}</Container>
             </RainbowKitProvider>
           </QueryClientProvider>
         </WagmiProvider>
