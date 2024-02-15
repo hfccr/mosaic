@@ -1,5 +1,11 @@
-import Image from "next/image";
+"use client";
+import Circuit from "@/components/Circuit";
+import { Container } from "@mui/material";
 
 export default function Home() {
-  return <>mosaic</>;
+  return (
+    <Container>
+      <Circuit />
+    </Container>
+  );
 }
