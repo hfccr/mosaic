@@ -7,6 +7,10 @@ let setupDone = false;
 let backend;
 let noir;
 
+function mapKeysToArray(map) {
+  return Array.from(map.keys()).map((key) => map.get(key));
+}
+
 const oneTimeSetup = async () => {
   if (setupDone) {
     return;
@@ -25,14 +29,13 @@ const oneTimeSetup = async () => {
 
 export const run = async (input) => {
   console.log("Input:", input);
-  try {
-    await oneTimeSetup();
-    console.log("Generating proof");
-    const proof = await noir.generateFinalProof(input);
-    console.log("Proof generated");
-    console.log("results", proof.proof);
-  } catch (e) {
-    console.log("Failed");
-    console.log(e);
-  }
+  await oneTimeSetup();
+  console.log("Generating proof");
+  const proof = await noir.generateFinalProof(input);
+  console.log("Proof generated");
+  console.log("results", proof.proof);
+  return {
+    proof: "0x" + Buffer.from(proof.proof).toString("hex"),
+    publicInputs: mapKeysToArray(proof.publicInputs),
+  };
 };

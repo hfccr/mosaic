@@ -14,5 +14,8 @@ export default function YourScore() {
     functionName: "getTrustScore",
     args: [[account.address]],
   });
+  if (!userScore) {
+    return <Typography>Loading...</Typography>;
+  }
   return <Typography>Your Score: {userScore[0][0].toString()}</Typography>;
 }
