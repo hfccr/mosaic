@@ -2,7 +2,7 @@
 import React from "react";
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import addresses from "@/util/contractAddresses";
-import { abi } from "@/util/trustNetwork";
+import { abi } from "@/util/trustNetworkABI";
 
 export default function Manager() {
 	const { data: hash, error, isPending, writeContract } = useWriteContract();
@@ -12,7 +12,6 @@ export default function Manager() {
 		const formData = new FormData(e.target);
 		const userAddress = formData.get("userAddress");
 		const penaltyPercentage = formData.get("penaltyPercentage");
-		console.log({ userAddress, penaltyPercentage, add: addresses.TrustNetwork });
 		writeContract({
 			address: addresses.TrustNetwork,
 			abi,
