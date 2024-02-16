@@ -10,7 +10,7 @@ import addresses from "@/util/contractAddresses";
 import { abi } from "@/util/trustNetworkABI";
 import { run } from "@/circuit/run";
 import { computeMerkleRoot } from "@/util/merkleTree";
-import { fromHex, keccak256, toHex } from "viem";
+import { fromHex, parseAbi } from "viem";
 
 export default function AnotherDapp() {
     const account = useAccount();
@@ -26,17 +26,11 @@ export default function AnotherDapp() {
             )
         );
 
-        // const scores = await publicClient.readContract({
-        //     address: addresses.TrustNetwork,
-        //     abi,
-        //     functionName: "getTrustScore",
-        //     args: [connectionsAddresses],
-        // });
         const scores = await publicClient.readContract({
             address: addresses.TrustNetwork,
             abi,
-            functionName: "trust",
-            args: [account.address],
+            functionName: "getTrustScore",
+            args: [connectionsAddresses],
         });
         const expectedHash = await publicClient.readContract({
             address: addresses.TrustNetwork,
@@ -50,22 +44,19 @@ export default function AnotherDapp() {
         const { proof, publicInputs } = await run({
             addresses: connectionsAddresses,
             // filter out the 0n scores
-            scores: [scores[0].toString()].concat(Array(9).fill("00")),
-            // scores: scores[0]
-            //     .filter((s) => s != 0n)
-            //     .concat(Array(10 - scores[0].filter((s) => s != 0n).length).fill("00"))
-            //     .map((score) => score.toString()),
+            scores: scores[0]
+                .filter((s) => s != 0n)
+                .concat(Array(10 - scores[0].filter((s) => s != 0n).length).fill("00"))
+                .map((score) => score.toString()),
             expected_hash: Array.from(fromHex(expectedHash, "bytes")),
             expected_merkle_tree_root_hash: Array.from(rootHash)
         });
-
-        console.log({ proof, publicInputs });
 
         writeContract({
             address: addresses.TrustNetwork,
             abi,
             functionName: "computeNewTrust",
-            args: [3, proof, publicInputs],
+            args: [3n, proof, publicInputs],
         });
     }
 
