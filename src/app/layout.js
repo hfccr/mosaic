@@ -6,7 +6,9 @@ import { config } from "@/util/wagmiConfig";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import Header from "@/components/Header";
-import { Container } from "@mui/material";
+import { Container, ThemeProvider } from "@mui/material";
+import "@fontsource-variable/montserrat";
+import { brandingLightTheme } from "@/util/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +18,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <WagmiProvider config={config}>
-          <QueryClientProvider client={queryClient}>
-            <RainbowKitProvider>
-              <Header />
-              <Container sx={{ marginTop: 20 }}>{children}</Container>
-            </RainbowKitProvider>
-          </QueryClientProvider>
-        </WagmiProvider>
+        <ThemeProvider theme={brandingLightTheme}>
+          <WagmiProvider config={config}>
+            <QueryClientProvider client={queryClient}>
+              <RainbowKitProvider>
+                <Header />
+                <Container sx={{ marginTop: 20 }}>{children}</Container>
+              </RainbowKitProvider>
+            </QueryClientProvider>
+          </WagmiProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -58,12 +58,12 @@ export default function Header() {
                   color="primary"
                   sx={{
                     cursor: "pointer",
-                    fontFamily: "Monoton, sans-serif",
+                    fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", sm: "none", md: "none", lg: "flex" },
                     fontWeight: 400,
                   }}
                 >
-                  mosaic
+                  MOSAIC
                 </Typography>
                 <Typography
                   variant="h3"
@@ -71,11 +71,11 @@ export default function Header() {
                   color="primary"
                   sx={{
                     cursor: "pointer",
-                    fontFamily: "Monoton, sans-serif",
+                    fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", md: "flex", lg: "none" },
                   }}
                 >
-                  mosaic
+                  MOSAIC
                 </Typography>
               </Box>
             </Link>
@@ -123,13 +123,13 @@ export default function Header() {
               component="div"
               color="primary"
               sx={{
-                fontFamily: "Monoton",
+                fontFamily: "'Montserrat Variable'",
                 display: { xs: "none", sm: "flex", md: "none" },
                 mr: 2,
                 flexGrow: 1,
               }}
             >
-              mosaic
+              MOSAIC
             </Typography>
             <Typography
               variant="h6"
@@ -137,13 +137,13 @@ export default function Header() {
               component="div"
               color="primary"
               sx={{
-                fontFamily: "Monoton",
+                fontFamily: "'Montserrat Variable'",
                 display: { xs: "flex", sm: "none" },
                 mr: 1,
                 flexGrow: 1,
               }}
             >
-              mosaic
+              MOSAIC
             </Typography>
             <Box
               sx={{
@@ -173,6 +173,7 @@ export default function Header() {
                 display: "flex",
                 justifyContent: "flex-end",
                 alignItems: "center",
+                minWidth: 260,
               }}
             >
               <Connect />
