@@ -17,5 +17,15 @@ export default function YourScore() {
   if (!userScore) {
     return <Typography>Loading...</Typography>;
   }
-  return <Typography>Your Score: {userScore[0][0].toString()}</Typography>;
+  return (
+    <>
+      <Typography variant="h4">Your Score</Typography>
+      {!userScore && <Typography variant="subtitle1">Loading...</Typography>}
+      {userScore && (
+        <Typography variant="subtitle1">
+          {userScore[0][0].toString()}
+        </Typography>
+      )}
+    </>
+  );
 }
