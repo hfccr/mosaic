@@ -1,3 +1,4 @@
+"use server";
 import { kv } from "@vercel/kv";
 
 export const getDetailsForAddress = async (address) => {
@@ -6,5 +7,5 @@ export const getDetailsForAddress = async (address) => {
 };
 
 export const setDetailsForAddress = async (address, details) => {
-  await kv.put(address, details);
+  await kv.set(address, details);
 };
