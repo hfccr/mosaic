@@ -5,17 +5,22 @@ import {
     useWaitForTransactionReceipt,
     usePublicClient,
     useAccount,
+    useWalletClient,
+    useConfig,
+    useConnections
 } from "wagmi";
 import addresses from "@/util/contractAddresses";
 import { abi } from "@/util/trustNetworkABI";
 import { run } from "@/circuit/run";
 import { computeMerkleRoot } from "@/util/merkleTree";
-import { fromHex, parseAbi } from "viem";
+import { fromHex, parseAbi, toHex, getContract } from "viem";
 
 export default function AnotherDapp() {
+    // const config = useConfig();
     const account = useAccount();
-    const { data: hash, error, isPending, writeContract } = useWriteContract();
-    const publicClient = usePublicClient();
+    // const connections = useConnections(config)
+    const walletClient = useWalletClient();
+    const { data: hash, error, isPending } = useWriteContract();
 
     async function submit() {
         // TODO: get from storage
@@ -52,7 +57,7 @@ export default function AnotherDapp() {
             expected_merkle_tree_root_hash: Array.from(rootHash)
         });
 
-        writeContract({
+        await walletClient.data.writeContract({
             address: addresses.TrustNetwork,
             abi,
             functionName: "computeNewTrust",
