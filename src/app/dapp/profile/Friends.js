@@ -3,9 +3,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import React from "react";
 
 const columns = [
-  { field: "address", headerName: "Address", width: 340 },
+  { field: "address", headerName: "Address", flex: 1 },
   { field: "score", headerName: "Score", width: 40 },
-  { field: "lastUpdated", headerName: "Last Updated", width: 100 },
+  { field: "lastUpdated", headerName: "Last Updated", width: 140 },
 ];
 
 const rows = [
@@ -21,13 +21,14 @@ const rows = [
 
 export default function Friends() {
   return (
-    <Stack>
+    <Stack spacing={2}>
       <Typography variant="h4">Your Friends</Typography>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSizeOptions={[10]}
+        pageSizeOptions={[10, 100]}
         getRowId={(row) => row.address}
+        disableRowSelectionOnClick
       />
     </Stack>
   );

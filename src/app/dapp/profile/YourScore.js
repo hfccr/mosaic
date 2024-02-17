@@ -1,5 +1,5 @@
 "use client";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import React from "react";
 import { useReadContract } from "wagmi";
 import addresses from "@/util/contractAddresses";
@@ -18,7 +18,7 @@ export default function YourScore() {
     return <Typography>Loading...</Typography>;
   }
   return (
-    <>
+    <Stack spacing={2}>
       <Typography variant="h4">Your Score</Typography>
       {!userScore && <Typography variant="subtitle1">Loading...</Typography>}
       {userScore && (
@@ -26,6 +26,6 @@ export default function YourScore() {
           {userScore[0][0].toString()}
         </Typography>
       )}
-    </>
+    </Stack>
   );
 }

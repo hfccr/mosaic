@@ -7,7 +7,7 @@ import Friends from "./Friends";
 
 export default function Profile() {
   return (
-    <Stack>
+    <Stack spacing={4}>
       <YourScore />
       <Friends />
       <AddFriend />
