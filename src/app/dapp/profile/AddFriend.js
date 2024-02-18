@@ -26,7 +26,8 @@ export default function AddFriend() {
   const onAddressChange = (e) => {
     setAddress(e.target.value);
   };
-  const handleAddFriend = async () => {
+  const handleAddFriend = async (e) => {
+    e.preventDefault();
     const friends = (await getKVForAddress(account.address))?.friends || [];
     setKVForAddress(account.address, { friends: friends.concat([address]) });
 
