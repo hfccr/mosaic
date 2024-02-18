@@ -19,12 +19,13 @@ export default function AnotherDapp() {
     // const config = useConfig();
     const account = useAccount();
     // const connections = useConnections(config)
+    const publicClient = usePublicClient();
     const walletClient = useWalletClient();
     const { data: hash, error, isPending } = useWriteContract();
 
     async function submit() {
-        // TODO: get from storage
-        const connectionsFromStorage = [account.address.toLowerCase()];
+        const data = await getKVForAddress(account.address);
+        const connectionsFromStorage = data?.friends.map((f) => f.toLowerCase()) || [account.address.toLowerCase()];
         const connectionsAddresses = connectionsFromStorage.concat(
             Array(10 - connectionsFromStorage.length).fill(
                 "0x0000000000000000000000000000000000000000"
