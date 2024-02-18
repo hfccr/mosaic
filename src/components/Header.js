@@ -24,7 +24,7 @@ const pages = [
     href: "/dapp/manager",
   },
   {
-    title: "Another Dapp",
+    title: "Another DApp",
     href: "/dapp/another-dapp",
   },
 ];
