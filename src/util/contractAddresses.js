@@ -1,5 +1,5 @@
 const addresses = {
-    TrustNetwork: '0x101bba25f87e328f3fad8933775e11f4e3d5f2f8',
+    TrustNetwork: '0x10cdf6951b9ae266f2da3fc6c970de0c7a7d3165',
 }
 
 export default addresses;
