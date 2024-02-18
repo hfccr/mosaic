@@ -4,7 +4,7 @@ import Image from "next/image";
 import addresses from "@/util/contractAddresses";
 import ArticleIcon from "@mui/icons-material/Article";
 import { GitHub } from "@mui/icons-material";
-import Link from "next/link";
+import "./page.module.css";
 
 export default function Home() {
   return (
@@ -29,7 +29,12 @@ export default function Home() {
           </Typography>
           <Image src="noir.svg" width={162} height={48} alt="Scroll" />
         </Stack>
-        <Stack direction="row" spacing={2}>
+        <Stack
+          direction={{ xl: "row", lg: "column" }}
+          spacing={3}
+          justifyContent="center"
+          alignItems="center"
+        >
           <Tooltip title="Mosaic Trust Network Scroll Sepolia Contract Address">
             <Chip label={addresses.TrustNetwork} icon={<ArticleIcon />} />
           </Tooltip>

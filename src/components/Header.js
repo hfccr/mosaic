@@ -60,7 +60,7 @@ export default function Header() {
                     cursor: "pointer",
                     fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-                    fontWeight: 900,
+                    fontWeight: 600,
                     background:
                       "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
                     backgroundClip: "text",
@@ -77,7 +77,7 @@ export default function Header() {
                     cursor: "pointer",
                     fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", md: "flex", lg: "none" },
-                    fontWeight: 900,
+                    fontWeight: 600,
                     background:
                       "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
                     backgroundClip: "text",
@@ -139,7 +139,7 @@ export default function Header() {
                   display: { xs: "none", sm: "flex", md: "none" },
                   mr: 2,
                   flexGrow: 1,
-                  fontWeight: 900,
+                  fontWeight: 600,
                   cursor: "pointer",
                   background:
                     "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
@@ -161,7 +161,7 @@ export default function Header() {
                   display: { xs: "flex", sm: "none" },
                   mr: 1,
                   flexGrow: 1,
-                  fontWeight: 900,
+                  fontWeight: 600,
                   cursor: "pointer",
                   background:
                     "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
