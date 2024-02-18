@@ -21,7 +21,9 @@ export default function Home() {
         />
         <Stack direction="row" alignItems="center" spacing={4}>
           <Image src="scroll.svg" width={162} height={48} alt="Scroll" />
-          <Typography variant="h3">X</Typography>
+          <Typography variant="h1" color="secondary">
+            +
+          </Typography>
           <Image src="noir.svg" width={162} height={48} alt="Scroll" />
         </Stack>
       </Stack>
