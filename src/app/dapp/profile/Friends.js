@@ -1,30 +1,52 @@
 import { Stack, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React from "react";
+import { useAccount, usePublicClient } from "wagmi";
+import { getKVForAddress } from "@/util/storage";
+import { useEffect, useState } from "react";
 
 const columns = [
   { field: "address", headerName: "Address", flex: 1 },
   { field: "score", headerName: "Score", width: 40 },
-  { field: "lastUpdated", headerName: "Last Updated", width: 140 },
-];
-
-const rows = [
-  {
-    address: "0x2a5fab77e8786c0be13e86cc662f9ee98c178cf3",
-    score: "85",
-  },
-  {
-    address: "0x35b8f6f71ab7bc464d6a900d8f33c3c287b19bc8",
-    score: "75",
-  },
+  { field: "lastPenalty", headerName: "Last Penalty", width: 140 },
 ];
 
 export default function Friends() {
+  const account = useAccount();
+  const publicClient = usePublicClient();
+  const [friendsScore, setFriendsScore] = useState([]);
+
+  useEffect(() => {
+    const getFriends = () => {
+      getKVForAddress(account.address).then(async (data) => {
+        const friends = data?.friends || [];
+        if (friends.length === 0) {
+          return;
+        }
+        const scores = await publicClient.readContract({
+          address: addresses.TrustNetwork,
+          abi,
+          functionName: "getTrustScore",
+          args: [friends],
+        });
+        setFriendsScore(
+          friends.map((f, i) => ({
+            address: f,
+            score: scores[0][i],
+            lastPenalty: new Date(scores[1][i]).toLocaleString(),
+          }))
+        );
+      
+      });
+    };
+    getFriends();
+  }, [account.address]);
+
   return (
     <Stack spacing={2}>
       <Typography variant="h4">Your Friends</Typography>
       <DataGrid
-        rows={rows}
+        rows={friendsScore}
         columns={columns}
         pageSizeOptions={[10, 100]}
         getRowId={(row) => row.address}
