@@ -8,6 +8,7 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import Header from "@/components/Header";
 import { Container, ThemeProvider } from "@mui/material";
 import "@fontsource-variable/montserrat";
+import "@fontsource-variable/unbounded";
 import { brandingLightTheme } from "@/util/theme";
 
 const inter = Inter({ subsets: ["latin"] });
