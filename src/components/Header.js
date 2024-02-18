@@ -60,7 +60,7 @@ export default function Header() {
                     cursor: "pointer",
                     fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-                    fontWeight: 400,
+                    fontWeight: 900,
                   }}
                 >
                   MOSAIC
@@ -73,6 +73,7 @@ export default function Header() {
                     cursor: "pointer",
                     fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", md: "flex", lg: "none" },
+                    fontWeight: 900,
                   }}
                 >
                   MOSAIC
@@ -111,40 +112,50 @@ export default function Header() {
                 {pages.map((page) => (
                   <Link key={page.href} href={page.href} legacyBehavior>
                     <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page.title}</Typography>
+                      <Typography textAlign="center" variant="h5">
+                        {page.title}
+                      </Typography>
                     </MenuItem>
                   </Link>
                 ))}
               </Menu>
             </Box>
-            <Typography
-              variant="h5"
-              noWrap
-              component="div"
-              color="primary"
-              sx={{
-                fontFamily: "'Montserrat Variable'",
-                display: { xs: "none", sm: "flex", md: "none" },
-                mr: 2,
-                flexGrow: 1,
-              }}
-            >
-              MOSAIC
-            </Typography>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              color="primary"
-              sx={{
-                fontFamily: "'Montserrat Variable'",
-                display: { xs: "flex", sm: "none" },
-                mr: 1,
-                flexGrow: 1,
-              }}
-            >
-              MOSAIC
-            </Typography>
+            <Link href="/" legacyBehavior>
+              <Typography
+                variant="h4"
+                noWrap
+                component="div"
+                color="primary"
+                sx={{
+                  fontFamily: "'Montserrat Variable'",
+                  display: { xs: "none", sm: "flex", md: "none" },
+                  mr: 2,
+                  flexGrow: 1,
+                  fontWeight: 900,
+                  cursor: "pointer",
+                }}
+              >
+                MOSAIC
+              </Typography>
+            </Link>
+            <Link href="/" legacyBehavior>
+              <Typography
+                variant="h4"
+                noWrap
+                component="div"
+                color="primary"
+                sx={{
+                  fontFamily: "'Montserrat Variable'",
+                  display: { xs: "flex", sm: "none" },
+                  mr: 1,
+                  flexGrow: 1,
+                  fontWeight: 900,
+                  cursor: "pointer",
+                }}
+              >
+                MOSAIC
+              </Typography>
+            </Link>
             <Box
               sx={{
                 flexGrow: 1,
@@ -161,7 +172,8 @@ export default function Header() {
                   <Button
                     onClick={handleCloseNavMenu}
                     color="inherit"
-                    sx={{ my: 2, display: "block", mx: 0 }}
+                    size="large"
+                    sx={{ my: 2, display: "block", mx: 2 }}
                   >
                     {page.title}
                   </Button>
