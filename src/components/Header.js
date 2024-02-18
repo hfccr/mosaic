@@ -61,6 +61,10 @@ export default function Header() {
                     fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", sm: "none", md: "none", lg: "flex" },
                     fontWeight: 900,
+                    background:
+                      "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
                   }}
                 >
                   MOSAIC
@@ -74,6 +78,10 @@ export default function Header() {
                     fontFamily: "'Montserrat Variable', sans-serif",
                     display: { xs: "none", md: "flex", lg: "none" },
                     fontWeight: 900,
+                    background:
+                      "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
                   }}
                 >
                   MOSAIC
@@ -133,6 +141,10 @@ export default function Header() {
                   flexGrow: 1,
                   fontWeight: 900,
                   cursor: "pointer",
+                  background:
+                    "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
               >
                 MOSAIC
@@ -151,6 +163,10 @@ export default function Header() {
                   flexGrow: 1,
                   fontWeight: 900,
                   cursor: "pointer",
+                  background:
+                    "linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(0,212,255,1) 88%, rgba(0,212,255,1) 88%)",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
               >
                 MOSAIC

@@ -81,7 +81,7 @@ export const blue = {
   200: '#99CCF3',
   300: '#66B2FF',
   400: '#3399FF',
-  main: '#007FFF',
+  main: '#0059B2',
   500: '#007FFF',
   600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
   700: '#0059B2',

@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="mosaicall">
       <body className={inter.className}>
         <ThemeProvider theme={brandingLightTheme}>
           <WagmiProvider config={config}>
