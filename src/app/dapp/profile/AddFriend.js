@@ -50,7 +50,7 @@ export default function AddFriend() {
   return (
     <Stack spacing={2}>
       <Typography variant="h4">Invite Friend</Typography>
-      <Box components="form" noValidate autoComplete="off">
+      <Box component="form" noValidate autoComplete="off">
         <Stack direction="row" spacing={4} alignItems="center">
           <TextField
             id="add-friend"

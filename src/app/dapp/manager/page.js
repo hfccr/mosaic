@@ -3,47 +3,70 @@ import React from "react";
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import addresses from "@/util/contractAddresses";
 import { abi } from "@/util/trustNetworkABI";
+import {
+  Box,
+  Button,
+  Container,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 export default function Manager() {
-	const { data: hash, error, isPending, writeContract } = useWriteContract();
+  const { data: hash, error, isPending, writeContract } = useWriteContract();
 
-	async function submit(e) {
-		e.preventDefault();
-		const formData = new FormData(e.target);
-		const userAddress = formData.get("userAddress");
-		const penaltyPercentage = formData.get("penaltyPercentage");
-		writeContract({
-			address: addresses.TrustNetwork,
-			abi,
-			functionName: "addPenalty",
-			args: [userAddress, BigInt(penaltyPercentage)],
-		});
-	}
+  async function submit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const userAddress = formData.get("userAddress");
+    const penaltyPercentage = formData.get("penaltyPercentage");
+    writeContract({
+      address: addresses.TrustNetwork,
+      abi,
+      functionName: "addPenalty",
+      args: [userAddress, BigInt(penaltyPercentage)],
+    });
+  }
 
-	const { isLoading: isConfirming, isSuccess: isConfirmed } =
-		useWaitForTransactionReceipt({
-			hash,
-		});
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({
+      hash,
+    });
 
-	return (
-		<div className="container">
-			<div className="stack">
-				<form className="set" onSubmit={submit}>
-					<input name="userAddress" placeholder="User Address" required />
-					<input
-						name="penaltyPercentage"
-						placeholder="Penalty Percentage"
-						required
-					/>
-					<button disabled={isPending} type="submit">
-						{isPending ? "Confirming..." : "Add Penalty"}
-					</button>
-				</form>
-				{hash && <div>Transaction Hash: {hash}</div>}
-				{isConfirming && <div>Waiting for confirmation...</div>}
-				{isConfirmed && <div>Transaction confirmed.</div>}
-				{error && <div>Error: {error.shortMessage || error.message}</div>}
-			</div>
-		</div>
-	);
+  return (
+    <Container>
+      <Stack direction="column">
+        <Box component="form" onSubmit={submit}>
+          <Stack direction="column" spacing={2} sx={{ width: "100%" }}>
+            <TextField name="userAddress" placeholder="User Address" required />
+            <TextField
+              name="penaltyPercentage"
+              placeholder="Penalty Percentage"
+              required
+            />
+            <Button
+              variant="contained"
+              disabled={isPending}
+              type="submit"
+              sx={{ flexGrow: 0 }}
+            >
+              {isPending ? "Confirming..." : "Add Penalty"}
+            </Button>
+          </Stack>
+        </Box>
+        {hash && <Typography variant="h4">Transaction Hash: {hash}</Typography>}
+        {isConfirming && (
+          <Typography variant="h4">Waiting for confirmation...</Typography>
+        )}
+        {isConfirmed && (
+          <Typography variant="h4">Transaction confirmed.</Typography>
+        )}
+        {error && (
+          <Typography variant="h4" color="error">
+            Error: {error.shortMessage || error.message}
+          </Typography>
+        )}
+      </Stack>
+    </Container>
+  );
 }
