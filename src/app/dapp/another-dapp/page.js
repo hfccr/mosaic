@@ -14,6 +14,7 @@ import { abi } from "@/util/trustNetworkABI";
 import { run } from "@/circuit/run";
 import { computeMerkleRoot } from "@/util/merkleTree";
 import { fromHex, parseAbi, toHex, getContract } from "viem";
+import { getKVForAddress } from "@/util/storage";
 
 export default function AnotherDapp() {
     // const config = useConfig();

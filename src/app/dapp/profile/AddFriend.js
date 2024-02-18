@@ -28,8 +28,7 @@ export default function AddFriend() {
   };
   const handleAddFriend = async () => {
     const friends = (await getKVForAddress(account.address))?.friends || [];
-    // TODO: add line below
-    // setKVForAddress(account.address, { friends: friends.concat([address]) });
+    setKVForAddress(account.address, { friends: friends.concat([address]) });
 
     const connections = friends
       .concat([address.toLowerCase()])

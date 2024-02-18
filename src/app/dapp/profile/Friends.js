@@ -4,6 +4,8 @@ import React from "react";
 import { useAccount, usePublicClient } from "wagmi";
 import { getKVForAddress } from "@/util/storage";
 import { useEffect, useState } from "react";
+import addresses from "@/util/contractAddresses";
+import { abi } from "@/util/trustNetworkABI";
 
 const columns = [
   { field: "address", headerName: "Address", flex: 1 },
@@ -32,8 +34,8 @@ export default function Friends() {
         setFriendsScore(
           friends.map((f, i) => ({
             address: f,
-            score: scores[0][i],
-            lastPenalty: new Date(scores[1][i]).toLocaleString(),
+            score: parseInt(scores[0][i]),
+            lastPenalty: parseInt(scores[1][i]) === 0 ? '-' : new Date(parseInt(scores[1][i]) * 1000).toLocaleString(),
           }))
         );
       

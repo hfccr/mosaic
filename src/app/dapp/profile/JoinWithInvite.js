@@ -5,17 +5,18 @@ import {
   useAccount,
   useWriteContract,
   useWaitForTransactionReceipt,
+  useWalletClient,
 } from "wagmi";
-import { recoverMessageAddress } from "viem";
+import { recoverMessageAddress, toHex } from "viem";
 import addresses from "@/util/contractAddresses";
 import { abi } from "@/util/trustNetworkABI";
 import { computeMerkleRoot } from "@/util/merkleTree";
 
 export default function JoinWithInvite() {
   const account = useAccount();
+  const walletClient = useWalletClient();
   const [inviteMessage, setInviteMessage] = useState("");
   const [inviteSignature, setInviteSignature] = useState("");
-  const { data: hash, error, isPending, writeContract } = useWriteContract();
 
   const onInviteMessageChange = (e) => {
     setInviteMessage(e.target.value);
@@ -38,26 +39,20 @@ export default function JoinWithInvite() {
         )
       );
     const rootHash = computeMerkleRoot(connections);
-
-    writeContract({
+    await walletClient.data.writeContract({
       address: addresses.TrustNetwork,
       abi,
       functionName: "join",
       args: [
         recoveredAddress,
-        rootHash,
+        toHex(rootHash),
         previousRootHash,
         newRootHash,
         "0x0",
-        ["0x00000000000000000000000000000000"],
+        ["0x0000000000000000000000000000000000000000000000000000000000000000"],
       ],
     });
   };
-
-  const { isLoading: isConfirming, isSuccess: isConfirmed } =
-    useWaitForTransactionReceipt({
-      hash,
-    });
 
   return (
     <Stack spacing={2}>
@@ -91,9 +86,6 @@ export default function JoinWithInvite() {
             Join
           </Button>
         </Stack>
-        {hash && <div>Transaction Hash: {hash}</div>}
-        {isConfirming && <div>Waiting for confirmation...</div>}
-        {isConfirmed && <div>Transaction confirmed.</div>}
       </Box>
     </Stack>
   );
